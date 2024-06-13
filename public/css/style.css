@@ -1,0 +1,124 @@
+body {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  /* width: 100vw; */
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Navbar */
+.container {
+  flex: 1;
+}
+.navbar {
+  height: 5rem;
+  background: white;
+  margin-bottom: 1rem;
+}
+.navbar-brand i {
+  color: red;
+  font-size: 2.5rem;
+}
+.nav-link {
+  color: rgb(39, 39, 39) !important;
+  /* position: fixed; */
+}
+
+/* Footer */
+
+.f-info-links a {
+  text-decoration: none;
+  color: #222222;
+}
+.f-info-socials {
+  font-size: 1.2rem;
+}
+
+.f-info-links a:hover {
+  text-decoration: underline;
+  color: #222222;
+}
+footer {
+  position: relative;
+  top: 0;
+}
+.f-info {
+  /* width: 100%; */
+  display: flex;
+  background: rgb(194, 194, 194);
+  height: 8rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  bottom: 0;
+  gap: 1rem;
+}
+
+/* cards */
+.row {
+  /* border: 1px solid black; */
+  /* width: 100vw; */
+  display: grid;
+  grid-template-rows: repeat(6, 1fr) !important;
+  place-items: center;
+  place-content: center;
+  margin: 0 !important;
+}
+@media (min-width: 1400px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+}
+.cards {
+  border: none !important;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  margin: 0.3rem;
+  padding: 0 !important;
+  margin: 01rem !important;
+  width: 15rem !important;
+  height: 19rem !important;
+  transition: 0.2s ease;
+  font-size: 0.9rem;
+  border-radius: 15px !important;
+  overflow: hidden;
+}
+.card {
+  border: none !important;
+  overflow: hidden !important;
+}
+.card-img-top {
+  border-radius: 15px;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+.card-body {
+  padding: 0 !important;
+}
+.card-body p {
+  padding-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+.cards:hover {
+  scale: 1.1;
+  z-index: 1;
+  box-shadow: 0px 4px 10px -1px rgba(0, 0, 0, 0.308);
+}
+.row a {
+  width: 17rem;
+  text-decoration: none;
+}
+
+/* show page  */
+.ulist .show-img {
+  height: 30vh;
+  border-radius: 15px !important;
+}
