@@ -8,7 +8,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const { listingSchema } = require("./schema.js");
+const { listingSchema, reviewSchema } = require("./schema.js");
 const Review = require("./models/review.js");
 
 main()
@@ -43,6 +43,15 @@ const validateListing = (req, res, next) => {
   }
 };
 
+const validateReview = (req, res, next) => {
+  let { error } = reviewSchema.validate(req.body);
+  if (error) {
+    throw new ExpressError(400, error);
+  } else {
+    next();
+  }
+};
+
 app.get(
   "/listings",
   wrapAsync(async (req, res) => {
@@ -68,7 +77,7 @@ app.get(
     const objectId = new mongoose.Types.ObjectId(id);
 
     try {
-      const listing = await Listing.findById(objectId);
+      const listing = await Listing.findById(objectId).populate("reviews");
       if (!listing) {
         return res.status(404).send({ error: "Listing not found" });
       }
@@ -94,7 +103,7 @@ app.get(
   "/listings/:id/edit",
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate("reviews");
     res.render("listings/edit.ejs", { listing });
   })
 );
@@ -121,19 +130,30 @@ app.delete(
 
 // Reviews post route
 app.post("/listings/:id/reviews", async (req, res) => {
-  let { id } = req.params;
-  let listing = await Listing.findById(id);
-  console.log(listing);
-  let { review } = req.body;
-  console.log(review); //woking
-  let reviewObj = new Review(review);
-  await reviewObj.save();
-  listing.reviews.push(reviewObj);
+  let listing = await Listing.findById(req.params.id);
+  let newReview = new Review(req.body.review);
+
+  listing.reviews.push(newReview);
   await listing.save();
-  res.send("review Saved");
+  await newReview.save();
+  res.redirect(`/listings/${listing._id}`);
+  console.log("new review saved");
+  console.log(newReview);
+  // res.redirect(`/listings/${listing._id}`);
 });
+
+app.delete(
+  "/listings/:id/reviews/:reviewId",
+  wrapAsync(async (req, res) => {
+    let { id, reviewId } = req.params;
+    await Listing.findByIdAndUpdate(id, { $pull: { review: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/listings/${id}`);
+  })
+);
+
 // app.get("/testListing", async (req, res)=>{
-//     let sampleListing = new Listing({
+//     let sampleListing = nefw Listing({
 //         title : "My New Villa ",
 //         description: " By the beach",
 //         price: 1200,

@@ -122,3 +122,6 @@ footer {
   height: 30vh;
   border-radius: 15px !important;
 }
+.listing-card {
+  border: 1px solid black !important;
+}
