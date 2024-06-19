@@ -12,8 +12,7 @@ const listingSchema = new Schema({
     url: {
       type: String,
       default:
-        "https://images.unsplash.com/photo-1688149946312-db1a2bb6686c?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      // required: true,
+        " https://images.unsplash.com/photo-1717866545967-68fdae38861b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D      // required: true",
     },
   },
   price: Number,
