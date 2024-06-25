@@ -9,7 +9,7 @@
             <% for(let listing of allListings){ %>
                 <a href="/listings/<%= listing._id %>" class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-xs-1"">
                     <div class="card col cards" >
-                        <img src="<%= listing.image %>>" class="card-img-top" alt="Listing Image" style="height: 15rem; width: 15rem; ">
+                        <img src="<%= listing.image.url %>>" class="card-img-top" alt="Listing Image" style="height: 15rem; width: 15rem; ">
                     <div class="card-body">
                         <b> <p class="card-text"> <%= listing.title %></b>
                         <br>
@@ -17,8 +17,7 @@
                 </p>
                 </div>
             </div>
-        </a>
-                <% } %>
+        </a> <% } %>
             </div>
             
 
