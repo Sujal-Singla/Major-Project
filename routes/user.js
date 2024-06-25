@@ -18,6 +18,7 @@ router.post(
       console.log(registeredUser);
       req.login(registeredUser, (err) => {
         if (err) {
+<<<<<<< HEAD
           return next(err);
         }
         console.log(req.session.redirectUrl); //ok got this
@@ -27,6 +28,16 @@ router.post(
     } catch (e) {
       req.flash("error", e.message);
       res.redirect("/signup");
+=======
+          return err;
+        }
+        req.flash("success", "Welcome to WanderLust");
+        res.redirect(req.session.redirectUrl);
+      });
+    } catch (e) {
+      req.flash("error", e.message);
+      req.redirect("/signup");
+>>>>>>> origin/main
     }
   })
 );

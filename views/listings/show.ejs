@@ -21,7 +21,11 @@
           </p>
         </div>
       </div>
+<<<<<<< HEAD
       <% if(currUser && currUser._id.equals(listing.owner._id) ) {%>
+=======
+      <!-- <% if(currUser && currUser._id.equals(listing.owner._id) ) {%> -->
+>>>>>>> origin/main
       <div class="offset-3 ">
         <a
           class="cols btn btn-outline-danger"
@@ -36,9 +40,14 @@
           <button class="cols btn btn-danger">Delete this Listing</button>
         </form>
       </div> 
+<<<<<<< HEAD
         <% } %>
     </div>
     <% if(currUser) {%>
+=======
+        <!-- <% } %> -->
+    </div>
+>>>>>>> origin/main
     <div class="col-6 mt-5">
       <hr />
       <h3>Leave a Review</h3>
@@ -74,15 +83,23 @@
         </div>
         <button class="btn btn-outline-primary mt-3 mb-4">submit</button>
       </form>
+<<<<<<< HEAD
       <% }%>
       <hr />
 
+=======
+      <hr />
+>>>>>>> origin/main
       <p>All Reviews</p>
       <div class="row">
         <% for (let review of listing.reviews) { %>
         <div class="card listing-card col-6 mr-3>
           <div class="card-body">
+<<<<<<< HEAD
             <h5 class="card-title"><%= review.author.username %></h5>
+=======
+            <h5 class="card-title">Jane Doe</h5>
+>>>>>>> origin/main
             <p class="card-text"><%= review.comment %></p>
             <p class="card-text"><%= review.rating %></p>
           <form action="/listings/<%= listing._id%>/reviews/<%= review._id%>?_method=DELETE" class="mb-3" method="post" >

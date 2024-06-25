@@ -31,7 +31,16 @@ router.get(
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id)
+<<<<<<< HEAD
       .populate({ path: "reviews", populate: { path: "author" } })
+=======
+      .populate({
+        path: "reviews",
+        populate: {
+          path: "author",
+        },
+      })
+>>>>>>> origin/main
       .populate("owner");
     if (!listing) {
       req.flash("error", "Listing you requested does not exist");
@@ -90,7 +99,11 @@ router.delete(
     let { id } = req.params;
     let deleted = await Listing.findByIdAndDelete(id);
     console.log(deleted);
+<<<<<<< HEAD
     req.flash("success", "Listing Deleted");
+=======
+    req.flasj("success", "Listing Deleted");
+>>>>>>> origin/main
     res.redirect("/listings");
   })
 );

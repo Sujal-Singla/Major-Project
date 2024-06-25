@@ -5,11 +5,14 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const { reviewSchema } = require("../schema.js");
 const ExpressError = require("../utils/ExpressError.js");
 const Listing = require("../models/listing.js");
+<<<<<<< HEAD
 const {
   isLoggedIn,
   isReviewAuthor,
   validateReview,
 } = require("../middleware.js");
+=======
+>>>>>>> origin/main
 
 const validateReview = (req, res, next) => {
   let { error } = reviewSchema.validate(req.body);
@@ -22,14 +25,21 @@ const validateReview = (req, res, next) => {
 
 router.post(
   "/",
+<<<<<<< HEAD
   isLoggedIn,
   validateReview,
+=======
+>>>>>>> origin/main
   wrapAsync(async (req, res) => {
     console.log(req.params.id);
     let listing = await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
+<<<<<<< HEAD
     newReview.author = req.user._id;
     console.log(newReview);
+=======
+
+>>>>>>> origin/main
     listing.reviews.push(newReview);
     await listing.save();
     await newReview.save();
@@ -42,8 +52,11 @@ router.post(
 
 router.delete(
   "/:reviewId",
+<<<<<<< HEAD
   isLoggedIn,
   isReviewAuthor,
+=======
+>>>>>>> origin/main
   wrapAsync(async (req, res) => {
     let { id, reviewId } = req.params;
     await Listing.findByIdAndUpdate(id, { $pull: { review: reviewId } });
