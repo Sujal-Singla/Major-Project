@@ -1,9 +1,6 @@
 const Listing = require("./models/listing");
-<<<<<<< HEAD
 const Review = require("./models/review");
 
-=======
->>>>>>> origin/main
 module.exports.isLoggedIn = (req, res, next) => {
   console.log(req.user);
   if (!req.isAuthenticated()) {
@@ -30,7 +27,6 @@ module.exports.isOwner = async (req, res, next) => {
   }
   next();
 };
-<<<<<<< HEAD
 
 module.exports.isReviewAuthor = async (req, res, next) => {
   let { id, reviewId } = req.params;
@@ -41,5 +37,3 @@ module.exports.isReviewAuthor = async (req, res, next) => {
   }
   next();
 };
-=======
->>>>>>> origin/main
