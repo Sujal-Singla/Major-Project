@@ -12,7 +12,7 @@
         />
         <div class="card-body">
           <p class="card-text mb-3">
-             Owned By <i><%= listing.owner.username %></i>
+            Owned By <i><%= listing.owner.username %></i>
             <br />
             <%= listing.description %> <br />
             &#8377;<%= listing.price.toLocaleString("en-IN") %> <br />
@@ -21,33 +21,26 @@
           </p>
         </div>
       </div>
-<<<<<<< HEAD
-      <% if(currUser && currUser._id.equals(listing.owner._id) ) {%>
-=======
-      <!-- <% if(currUser && currUser._id.equals(listing.owner._id) ) {%> -->
->>>>>>> origin/main
-      <div class="offset-3 ">
+
+      <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
+      <div class="offset-3">
         <a
           class="cols btn btn-outline-danger"
-          href="/listings/<%=listing._id%>/edit "
+          href="/listings/<%= listing._id %>/edit"
           >Edit this Listing</a
         >
         <br /><br />
         <form
-          action="/listings/<%= listing._id %>?_method=Delete"
+          action="/listings/<%= listing._id %>?_method=DELETE"
           method="post"
         >
           <button class="cols btn btn-danger">Delete this Listing</button>
         </form>
-      </div> 
-<<<<<<< HEAD
-        <% } %>
+      </div>
+      <% } %>
     </div>
-    <% if(currUser) {%>
-=======
-        <!-- <% } %> -->
-    </div>
->>>>>>> origin/main
+
+    <% if(currUser) { %>
     <div class="col-6 mt-5">
       <hr />
       <h3>Leave a Review</h3>
@@ -57,7 +50,6 @@
         novalidate
         class="needs-validation"
       >
-      <!-- <a href="">Hello world</a> -->
         <div>
           <label class="form-label" for="rating">Rating</label>
           <input
@@ -69,6 +61,52 @@
             class="form-range"
           />
         </div>
+        <fieldset class="starability-heartbeat">
+          <input
+            type="radio"
+            id="no-rate"
+            class="input-no-rate"
+            name="review[rating]"
+            value="1"
+            checked
+            aria-label="No rating."
+          />
+          <input
+            type="radio"
+            id="first-rate1"
+            name="review[rating]"
+            value="1"
+          />
+          <label for="first-rate1" title="Terrible">1 star</label>
+          <input
+            type="radio"
+            id="first-rate2"
+            name="review[rating]"
+            value="2"
+          />
+          <label for="first-rate2" title="Not good">2 stars</label>
+          <input
+            type="radio"
+            id="first-rate3"
+            name="review[rating]"
+            value="3"
+          />
+          <label for="first-rate3" title="Average">3 stars</label>
+          <input
+            type="radio"
+            id="first-rate4"
+            name="review[rating]"
+            value="4"
+          />
+          <label for="first-rate4" title="Very good">4 stars</label>
+          <input
+            type="radio"
+            id="first-rate5"
+            name="review[rating]"
+            value="5"
+          />
+          <label for="first-rate5" title="Amazing">5 stars</label>
+        </fieldset>
         <div>
           <label class="form-label" for="comment">Comments</label>
           <textarea
@@ -79,36 +117,33 @@
             class="form-control"
             required
           ></textarea>
-          <div class="invalid-feedback">Comments Neccessary</div>
+          <div class="invalid-feedback">Comments necessary</div>
         </div>
-        <button class="btn btn-outline-primary mt-3 mb-4">submit</button>
+        <button class="btn btn-outline-primary mt-3 mb-4">Submit</button>
       </form>
-<<<<<<< HEAD
-      <% }%>
-      <hr />
+    </div>
+    <% } %>
 
-=======
-      <hr />
->>>>>>> origin/main
-      <p>All Reviews</p>
-      <div class="row">
-        <% for (let review of listing.reviews) { %>
-        <div class="card listing-card col-6 mr-3>
-          <div class="card-body">
-<<<<<<< HEAD
-            <h5 class="card-title"><%= review.author.username %></h5>
-=======
-            <h5 class="card-title">Jane Doe</h5>
->>>>>>> origin/main
-            <p class="card-text"><%= review.comment %></p>
-            <p class="card-text"><%= review.rating %></p>
-          <form action="/listings/<%= listing._id%>/reviews/<%= review._id%>?_method=DELETE" class="mb-3" method="post" >
-            <button class="btn btn-sm  btn-danger">Delete Review</button>
+    <hr />
+    <p>All Reviews</p>
+    <div class="row col-6">
+      <% for (let review of listing.reviews) { %>
+      <div class="card listing-card col-6 mr-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= review.author.username %></h5>
+          <p class="card-text"><%= review.comment %></p>
+          <p class="card-text"><%= review.rating %></p>
+          <p class="starability-result" data-rating="<%= review.rating %>"></p>
+          <form
+            action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
+            class="mb-3"
+            method="post"
+          >
+            <button class="btn btn-sm btn-danger">Delete Review</button>
           </form>
-          </div>
-        <% } %>
         </div>
       </div>
+      <% } %>
     </div>
   </div>
 </body>
